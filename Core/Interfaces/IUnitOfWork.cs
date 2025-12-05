@@ -9,6 +9,8 @@ namespace Core.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUserType userType{ get; }
+        IUserTypeRepository UserTypeRepository{ get; }
+
+        Task<int> CommitAsync();
     }
 }
