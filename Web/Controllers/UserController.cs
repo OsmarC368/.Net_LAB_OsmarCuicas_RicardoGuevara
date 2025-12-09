@@ -46,7 +46,7 @@ namespace Web.Controllers
             }
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult<Response<User>>> Post([FromBody] User user)
         {
             try
@@ -58,7 +58,7 @@ namespace Web.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
-        }
+        }*/
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Response<User>>> Put(int id, [FromBody] User user)

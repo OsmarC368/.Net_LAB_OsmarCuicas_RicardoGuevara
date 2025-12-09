@@ -104,7 +104,7 @@ namespace Services.Services
 			}
 
 			var tokenHandler = new JwtSecurityTokenHandler();
-			var key = Encoding.ASCII.GetBytes("MySuperSecretKey123!");
+			var key = Encoding.ASCII.GetBytes("superclaveultrasegura_12345678900000!");
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(new Claim[]
@@ -156,7 +156,6 @@ namespace Services.Services
                 Email = registerResponse.Email,
                 Password = registerResponse.Password,
                 UserTypeID = registerResponse.UserTypeID,
-                Status = UserStatus.Active
             };
 
             await _unitOfWork.UserRepository.AddAsync(user);
