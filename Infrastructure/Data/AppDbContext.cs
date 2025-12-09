@@ -7,20 +7,18 @@ using Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Infrastructure
+namespace Infrastructure.Data
 {
     public class AppDbContext : DbContext
     {
         public DbSet<UserType> userTypes{ get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-            
-        }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserTypeConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserTypeConfiguration).Assembly);
+            // modelBuilder.ApplyConfiguration(new UserTypeConfiguration());
         }
 
     }

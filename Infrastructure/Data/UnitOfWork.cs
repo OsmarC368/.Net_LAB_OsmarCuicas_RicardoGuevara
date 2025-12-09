@@ -6,7 +6,7 @@ using Core.Interfaces;
 using Core.Interfaces.Repositories;
 using Infrastructure.Repositories;
 
-namespace Infrastructure
+namespace Infrastructure.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
