@@ -12,10 +12,12 @@ namespace Infrastructure.Data
     {
         private readonly AppDbContext _context;
         private UserTypeRepository _userTypeRepository;
+        private MeasureRepository _measureRepository;
 
         public UnitOfWork(AppDbContext context) { this._context = context; }
 
         public IUserTypeRepository UserTypeRepository => _userTypeRepository ??= new UserTypeRepository(_context);
+        public IMeasureRepository MeasureRepository => _measureRepository ??= new MeasureRepository(_context);
 
         public async Task<int> CommitAsync()
         {

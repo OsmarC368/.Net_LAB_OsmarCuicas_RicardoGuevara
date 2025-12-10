@@ -10,6 +10,7 @@ namespace Core.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IUserTypeRepository UserTypeRepository{ get; }
+        IMeasureRepository  MeasureRepository{ get; }
 
         Task<int> CommitAsync();
     }
