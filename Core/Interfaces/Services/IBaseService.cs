@@ -1,3 +1,4 @@
+using Core.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,11 @@ namespace Core.Interfaces.Services
 {
     public interface IBaseService<Entity> where Entity : class
     {
-        Task<Entity> GetById(int id);
-        Task<IEnumerable<Entity>> GetAll();
-        Task<Entity> Create(Entity newEntity);
-        Task<Entity> Update(int entityId, Entity newEntityValues);
-        Task Delete(int entityId);
+        
+        Task<Response<Entity>> GetByIdAsync(int id);
+        Task<Response<IEnumerable<Entity>>> GetAllAsync();
+        Task<Response<Entity>> Create(Entity newEntity);
+        Task<Response<Entity>> Update(int entityToBeUpdatedId, Entity newEntityValues);
+        Task<Response<Entity>> Remove(int entityId);
     }
 }
