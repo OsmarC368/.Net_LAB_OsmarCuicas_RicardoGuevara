@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BfDSWwQ9698=",
+  "dgSpecHash": "TGp+uUh8M3g=",
   "success": true,
   "projectFilePath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\osmar\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512"
+  ],
   "logs": []
 }
