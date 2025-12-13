@@ -7,9 +7,9 @@ using FluentValidation;
 
 namespace Services.Validators
 {
-    public class UserTypeValidator : AbstractValidator<UserType>
+    public class MeasureValidator : AbstractValidator<Measure>
     {
-        public UserTypeValidator()
+        public MeasureValidator()
         {
             RuleFor(x => x.name)
                 .NotEmpty()
@@ -19,6 +19,6 @@ namespace Services.Validators
                 .NotEmpty()
                 .MaximumLength(255);
                 
-        }   
+        } 
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Interfaces.Services;
+using Services.Validators;
 
 namespace Services.Services
 {
@@ -28,14 +29,29 @@ namespace Services.Services
 
         public async Task<Measure> Create(Measure newMeasure)
         {
-            // Falta añadir el validator
-            await _unitOfWork.MeasureRepository.AddAsync(newMeasure);
-            await _unitOfWork.CommitAsync();
+            MeasureValidator validator = new ();
+            var validatorResult = await validator.ValidateAsync(newMeasure);
+
+            if (validatorResult.IsValid)
+            {
+                await _unitOfWork.MeasureRepository.AddAsync(newMeasure);
+                await _unitOfWork.CommitAsync();
+            }
+            else
+            {
+                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
+            }
+
             return newMeasure;
         }
 
         public async Task<Measure> Update(int measureUpdatedId, Measure measureUpdated)
         {
+            MeasureValidator validator = new ();
+            var validatorResult = await validator.ValidateAsync(measureUpdated);
+            if (!validatorResult.IsValid)
+                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
+
             Measure measure = await _unitOfWork.MeasureRepository.GetByIdAsync(measureUpdatedId);
             if (measure == null)
                 throw new ArgumentException("Invalid Measure ID While Updating");

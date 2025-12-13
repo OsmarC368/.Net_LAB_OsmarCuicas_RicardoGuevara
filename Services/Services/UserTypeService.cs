@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Interfaces.Services;
+using Services.Validators;
 
 namespace Services.Services
 {
@@ -28,14 +29,29 @@ namespace Services.Services
 
         public async Task<UserType> Create(UserType newUserType)
         {
-            // Falta añadir el validator
-            await _unitOfWork.UserTypeRepository.AddAsync(newUserType);
-            await _unitOfWork.CommitAsync();
+            UserTypeValidator validator = new ();
+            var validatorResult = await validator.ValidateAsync(newUserType);
+
+            if (validatorResult.IsValid)
+            {
+                await _unitOfWork.UserTypeRepository.AddAsync(newUserType);
+                await _unitOfWork.CommitAsync();
+            }
+            else
+            {
+                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
+
+            }
             return newUserType;
         }
 
         public async Task<UserType> Update(int userTypeUpdatedId, UserType userTypeUpdated)
         {
+            UserTypeValidator validator = new ();
+            var validatorResult = await validator.ValidateAsync(userTypeUpdated);
+            if (!validatorResult.IsValid)
+                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
+
             UserType userType = await _unitOfWork.UserTypeRepository.GetByIdAsync(userTypeUpdatedId);
             if (userType == null)
                 throw new ArgumentException("Invalid User Type ID While Updating");
