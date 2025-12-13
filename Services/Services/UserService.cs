@@ -113,6 +113,8 @@ namespace Services.Services
 					new Claim("id", user.Id.ToString())
 				}),
 				Expires = DateTime.UtcNow.AddMinutes(7),
+				Issuer = "MiApiBackend",
+    			Audience = "MiApiClientes",
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
 			};
 			var token = tokenHandler.CreateToken(tokenDescriptor);
