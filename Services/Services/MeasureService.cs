@@ -1,11 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Interfaces.Services;
 using Services.Validators;
+using System.Text;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core.Responses;
 
 namespace Services.Services
 {
@@ -17,58 +18,73 @@ namespace Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Measure> GetById(int id)
+        public async Task<Response<Measure>> GetByIdAsync(int id)
         {
-            return await _unitOfWork.MeasureRepository.GetByIdAsync(id);
+            var found = await _unitOfWork.MeasureRepository.GetByIdAsync(id);
+
+			if (found == null)
+			{
+				return new Response<Measure> { Ok = false, Mensaje = "Medida no encontrada", Datos = found };
+			}
+			else
+			{
+				return new Response<Measure> { Ok = true, Mensaje = "Medida obtenida", Datos = found };
+			}
         }
 
-        public async Task<IEnumerable<Measure>> GetAll()
+        public async Task<Response<IEnumerable<Measure>>> GetAllAsync()
         {
-            return await _unitOfWork.MeasureRepository.GetAllAsync();
+            return new Response<IEnumerable<Measure>> { Ok = true, Mensaje = "Medidas obtenidas", Datos = await _unitOfWork.MeasureRepository.GetAllAsync() };
         }
 
-        public async Task<Measure> Create(Measure newMeasure)
+        public async Task<Response<Measure>> Create(Measure newMeasure)
         {
-            MeasureValidator validator = new ();
-            var validatorResult = await validator.ValidateAsync(newMeasure);
+            MeasureValidator validator = new();
 
-            if (validatorResult.IsValid)
-            {
-                await _unitOfWork.MeasureRepository.AddAsync(newMeasure);
-                await _unitOfWork.CommitAsync();
-            }
-            else
-            {
-                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
-            }
+			var resultValidation = await validator.ValidateAsync(newMeasure);
 
-            return newMeasure;
+			if (!resultValidation.IsValid)
+			{
+				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
+			}
+
+			var entityAdded = await _unitOfWork.MeasureRepository.AddAsync(newMeasure);
+			await _unitOfWork.CommitAsync();
+
+			return new Response<Measure> { Ok = true, Mensaje = "Medida creada con éxito", Datos = entityAdded };
         }
 
-        public async Task<Measure> Update(int measureUpdatedId, Measure measureUpdated)
+        public async Task<Response<Measure>> Update(int measureUpdatedId, Measure measureUpdated)
         {
-            MeasureValidator validator = new ();
-            var validatorResult = await validator.ValidateAsync(measureUpdated);
-            if (!validatorResult.IsValid)
-                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
+            MeasureValidator validator = new();
 
-            Measure measure = await _unitOfWork.MeasureRepository.GetByIdAsync(measureUpdatedId);
-            if (measure == null)
-                throw new ArgumentException("Invalid Measure ID While Updating");
+			var resultValidation = await validator.ValidateAsync(measureUpdated);
 
-            measure.name = measureUpdated.name;
-            measure.description = measureUpdated.description;
+			if (!resultValidation.IsValid)
+			{
+				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
 
-            await _unitOfWork.CommitAsync();
+			}
 
-            return await _unitOfWork.MeasureRepository.GetByIdAsync(measureUpdatedId);
+			Measure measureToUpdate = await _unitOfWork.MeasureRepository.GetByIdAsync(measureUpdatedId);
+
+			if (measureUpdated == null)
+				throw new ArgumentException("Id de la medida a actualizar inválido");
+
+			measureToUpdate.name = measureUpdated.name;
+			measureToUpdate.description = measureUpdated.description;
+
+			await _unitOfWork.CommitAsync();
+
+			return new Response<Measure> { Ok = true, Mensaje = "Medida actualizada con éxito", Datos = await _unitOfWork.MeasureRepository.GetByIdAsync(measureUpdatedId) };
         }
 
-        public async Task Delete(int measureId)
+        public async Task<Response<Measure>> Remove(int measureId)
         {
             Measure measureFound = await _unitOfWork.MeasureRepository.GetByIdAsync(measureId);
             _unitOfWork.MeasureRepository.Remove(measureFound);
             await _unitOfWork.CommitAsync();
+            return new Response<Measure> { Ok = true, Mensaje = "Medida eliminada", Datos = null };
         }
     }
 }

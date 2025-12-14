@@ -19,24 +19,6 @@ namespace Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response<Ingredient>> Add(Ingredient newEntity)
-		{
-			IngredientValidator validator = new();
-
-			var resultValidation = await validator.ValidateAsync(newEntity);
-
-			if (!resultValidation.IsValid)
-			{
-				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
-			}
-
-			var entityadded = await _unitOfWork.IngredientRepository.AddAsync(newEntity);
-			await _unitOfWork.CommitAsync();
-
-			return new Response<Ingredient> { Ok = true, Mensaje = "Ingrediente creado con éxito", Datos = entityadded };
-
-		}
-
         public async Task<Response<Ingredient>> GetByIdAsync(int id)
 		{
 			var found = await _unitOfWork.IngredientRepository.GetByIdAsync(id);
