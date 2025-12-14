@@ -1,86 +1,95 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core.Responses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Controllers
 {
-    [Route("api/[controller]")]
+    
+    [Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class UserTypeController : ControllerBase
     {
-        private readonly IUserTypeService _userTypeService;
+        private readonly IUserTypeService _service;
 
-        public UserTypeController(IUserTypeService userTypeService)
+        public UserTypeController(IUserTypeService service)
         {
-            _userTypeService = userTypeService;
+            _service = service;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserType>>> Get()
-        {
-            var userTypes = await _userTypeService.GetAll();
-            return Ok(userTypes);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserType>> GetById(int id)
+        public async Task<ActionResult<Response<IEnumerable<UserType>>>>  Get()
         {
             try
             {
-                var userTypes = await _userTypeService.GetById(id);
-                return Ok(userTypes);
+                var response = await _service.GetAllAsync();
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Response<UserType>>> GetById(int id)
+        {
+            try
+            {
+                var response = await _service.GetByIdAsync(id); 
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserType>> Post([FromBody] UserType userType)
+        public async Task<ActionResult<Response<UserType>>> Post([FromBody] UserType userType)
         {
             try
             {
-                var newUserTypeCreated = await _userTypeService.Create(userType);
-                return CreatedAtAction(nameof(GetById), new {id = newUserTypeCreated.id}, newUserTypeCreated);
+                var response = await _service.Create(userType);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UserType>> Update(int id, [FromBody] UserType userType)
+        public async Task<ActionResult<Response<UserType>>> Update(int id, [FromBody] UserType userType)
         {
             try
             {
-                var updatedUserType = await _userTypeService.Update(id, userType);
-                return Ok(updatedUserType);
+                var response = await _service.Update(id, userType);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<Response<UserType>>> Delete(int id)
         {
             try
-            {
-                await _userTypeService.Delete(id);
-                return Ok("User Type Deleted");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+			{
+				var Response = await _service.Remove(id);
+
+				return Ok(Response);
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(new { message = ex.Message });
+			}
         }
     }
 }

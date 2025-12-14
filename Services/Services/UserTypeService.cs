@@ -1,11 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Interfaces.Services;
 using Services.Validators;
+using System.Text;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core.Responses;
 
 namespace Services.Services
 {
@@ -17,58 +18,73 @@ namespace Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<UserType> GetById(int id)
+        public async Task<Response<UserType>> GetByIdAsync(int id)
         {
-            return await _unitOfWork.UserTypeRepository.GetByIdAsync(id);
+            var found = await _unitOfWork.UserTypeRepository.GetByIdAsync(id);
+
+			if (found == null)
+			{
+				return new Response<UserType> { Ok = false, Mensaje = "Tipo de usuario no encontrado", Datos = found };
+			}
+			else
+			{
+				return new Response<UserType> { Ok = true, Mensaje = "Tipo de usuario obtenido", Datos = found };
+			}
         }
 
-        public async Task<IEnumerable<UserType>> GetAll()
+        public async Task<Response<IEnumerable<UserType>>> GetAllAsync()
         {
-            return await _unitOfWork.UserTypeRepository.GetAllAsync();
+			return new Response<IEnumerable<UserType>> { Ok = true, Mensaje = "Tipos de usuarios obtenidos", Datos = await _unitOfWork.UserTypeRepository.GetAllAsync() };
         }
 
-        public async Task<UserType> Create(UserType newUserType)
+        public async Task<Response<UserType>> Create(UserType newUserType)
         {
-            UserTypeValidator validator = new ();
-            var validatorResult = await validator.ValidateAsync(newUserType);
+            UserTypeValidator validator = new();
 
-            if (validatorResult.IsValid)
-            {
-                await _unitOfWork.UserTypeRepository.AddAsync(newUserType);
-                await _unitOfWork.CommitAsync();
-            }
-            else
-            {
-                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
+			var resultValidation = await validator.ValidateAsync(newUserType);
 
-            }
-            return newUserType;
+			if (!resultValidation.IsValid)
+			{
+				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
+			}
+
+			var entityAdded = await _unitOfWork.UserTypeRepository.AddAsync(newUserType);
+			await _unitOfWork.CommitAsync();
+
+			return new Response<UserType> { Ok = true, Mensaje = "Tipo de usuario creado con éxito", Datos = entityAdded };
         }
 
-        public async Task<UserType> Update(int userTypeUpdatedId, UserType userTypeUpdated)
+        public async Task<Response<UserType>> Update(int userTypeUpdatedId, UserType userTypeUpdated)
         {
-            UserTypeValidator validator = new ();
-            var validatorResult = await validator.ValidateAsync(userTypeUpdated);
-            if (!validatorResult.IsValid)
-                throw new ArgumentException(validatorResult.Errors[0].ErrorMessage.ToString());
+            UserTypeValidator validator = new();
 
-            UserType userType = await _unitOfWork.UserTypeRepository.GetByIdAsync(userTypeUpdatedId);
-            if (userType == null)
-                throw new ArgumentException("Invalid User Type ID While Updating");
+			var resultValidation = await validator.ValidateAsync(userTypeUpdated);
 
-            userType.name = userTypeUpdated.name;
-            userType.description = userTypeUpdated.description;
+			if (!resultValidation.IsValid)
+			{
+				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
 
-            await _unitOfWork.CommitAsync();
+			}
 
-            return await _unitOfWork.UserTypeRepository.GetByIdAsync(userTypeUpdatedId);
+			UserType UserTypeToUpdate = await _unitOfWork.UserTypeRepository.GetByIdAsync(userTypeUpdatedId);
+
+			if (UserTypeToUpdate == null)
+				throw new ArgumentException("Id del tipo de usuario a actualizar inválido");
+
+			UserTypeToUpdate.name = userTypeUpdated.name;
+			UserTypeToUpdate.description = userTypeUpdated.description;
+
+			await _unitOfWork.CommitAsync();
+
+			return new Response<UserType> { Ok = true, Mensaje = "Tipo de usuario actualizado con éxito", Datos = await _unitOfWork.UserTypeRepository.GetByIdAsync(userTypeUpdatedId) };
         }
 
-        public async Task Delete(int userTypeId)
+        public async Task<Response<UserType>> Remove(int userTypeId)
         {
             UserType userTypeFound = await _unitOfWork.UserTypeRepository.GetByIdAsync(userTypeId);
             _unitOfWork.UserTypeRepository.Remove(userTypeFound);
             await _unitOfWork.CommitAsync();
+            return new Response<UserType> { Ok = true, Mensaje = "Tipo de usuario eliminado", Datos = null };
         }
     }
 }

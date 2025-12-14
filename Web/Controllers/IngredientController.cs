@@ -36,7 +36,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Response<Ingredient>>> Get(int id)
+        public async Task<ActionResult<Response<Ingredient>>> GetById(int id)
         {
             try
             {

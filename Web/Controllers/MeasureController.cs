@@ -1,85 +1,94 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core.Responses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class MeasureController : ControllerBase
     {
-        private readonly IMeasureService _measureService;
+        private readonly IMeasureService _service;
 
-        public MeasureController(IMeasureService measureService)
+        public MeasureController(IMeasureService service)
         {
-            _measureService = measureService;
+            _service = service;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Measure>>> Get()
-        {
-            var measures = await _measureService.GetAll();
-            return Ok(measures);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Measure>> GetById(int id)
+        public async Task<ActionResult<Response<IEnumerable<Measure>>>>  Get()
         {
             try
             {
-                var measures = await _measureService.GetById(id);
-                return Ok(measures);
+                var response = await _service.GetAllAsync();
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Response<Measure>>> GetById(int id)
+        {
+            try
+            {
+                var response = await _service.GetByIdAsync(id); 
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<Measure>> Post([FromBody] Measure measure)
+        public async Task<ActionResult<Response<Measure>>> Post([FromBody] Measure measure)
         {
             try
             {
-                var newMeasureCreated = await _measureService.Create(measure);
-                return CreatedAtAction(nameof(GetById), new {id = newMeasureCreated.id}, newMeasureCreated);
+                var response = await _service.Create(measure);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Measure>> Update(int id, [FromBody] Measure measure)
+        public async Task<ActionResult<Response<Measure>>> Update(int id, [FromBody] Measure measure)
         {
             try
             {
-                var updatedMeasure = await _measureService.Update(id, measure);
-                return Ok(updatedMeasure);
+                var response = await _service.Update(id, measure);
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<Response<Measure>>> Delete(int id)
         {
             try
-            {
-                await _measureService.Delete(id);
-                return Ok("Measure Deleted");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+			{
+				var Response = await _service.Remove(id);
+
+				return Ok(Response);
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(new { message = ex.Message });
+			}
         }
     }
 }
