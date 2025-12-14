@@ -38,8 +38,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 			.HasMaxLength(255);
 
 
-        builder.Property(x => x.UserTypeID)
+        builder.HasOne(x => x.UserType)
+            .WithMany()
+            .HasForeignKey(x => x.UserTypeID)
             .IsRequired();
+
+        builder.HasMany(x => x.Recipes)
+            .WithOne()
+            .HasForeignKey(x => x.UserId);
 
         builder.ToTable("Users");
     }

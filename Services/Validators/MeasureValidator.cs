@@ -13,11 +13,13 @@ namespace Services.Validators
         {
             RuleFor(x => x.name)
                 .NotEmpty()
-                .MaximumLength(90);
+                .MaximumLength(90)
+                .WithMessage("El Nombre es Obligatorio y no debe exceder los 90 caracteres.");
 
-            RuleFor(x => x.description)
+            RuleFor(x => x.symbol)
                 .NotEmpty()
-                .MaximumLength(255);
+                .MaximumLength(255)
+                .WithMessage("El Símbolo es Obligatorio y no debe exceder los 90 caracteres.");
                 
         } 
     }

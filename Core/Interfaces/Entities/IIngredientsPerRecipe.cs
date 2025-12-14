@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.Entities
 {
-    public interface IMeasure
+    public interface IIngredientsPerRecipe
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public string symbol { get; set; }
+        public int RecipeId { get; set; }
+        public int IngredientId { get; set; }
+        public float amount { get; set; }
     }
 }

@@ -72,7 +72,7 @@ namespace Services.Services
 				throw new ArgumentException("Id de la medida a actualizar inválido");
 
 			measureToUpdate.name = measureUpdated.name;
-			measureToUpdate.description = measureUpdated.description;
+			measureToUpdate.symbol = measureUpdated.symbol;
 
 			await _unitOfWork.CommitAsync();
 

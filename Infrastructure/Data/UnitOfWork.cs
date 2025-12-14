@@ -15,6 +15,9 @@ namespace Infrastructure.Data
         private MeasureRepository? _measureRepository;
         private IUserRepository? _userRepository;
         private IIngredientRepository? _ingredientRepository;
+        private IIngredientsPerRecipeRepository? _ingredientsPerRecipeRepository;
+        private IRecipeRepository? _recipeRepository;
+        private IStepRepository? _stepRepository;
 
         public UnitOfWork(AppDbContext context) { this._context = context; }
 
@@ -22,6 +25,9 @@ namespace Infrastructure.Data
         public IMeasureRepository MeasureRepository => _measureRepository ??= new MeasureRepository(_context);
         public IUserRepository UserRepository => _userRepository ??= new UserRepository(_context);
         public IIngredientRepository IngredientRepository => _ingredientRepository ??= new IngredientRepository(_context);
+        public IIngredientsPerRecipeRepository IngredientsPerRecipeRepository => _ingredientsPerRecipeRepository ??= new IngredientsPerRecipeRepository(_context);
+        public IStepRepository StepRepository => _stepRepository ??= new StepRepository(_context);
+        public IRecipeRepository RecipeRepository => _recipeRepository ??= new RecipeRepository(_context);
 
         public async Task<int> CommitAsync()
         {
