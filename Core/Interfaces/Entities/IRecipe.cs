@@ -12,8 +12,8 @@ namespace Core.Interfaces.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
-        public List<IngredientsPerRecipe> Ingredients { get; set; }
-        public List<Step> Steps { get; set; }
+        public List<IngredientsPerRecipe> IngredientsR { get; set; }
+        public List<Step> StepsR { get; set; }
         public float DifficultyLevel { get; set; }
         public int Visibility { get; set; }
         public int UserId { get; set; }

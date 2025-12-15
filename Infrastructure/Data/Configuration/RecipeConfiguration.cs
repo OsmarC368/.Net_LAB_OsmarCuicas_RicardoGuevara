@@ -45,18 +45,18 @@ namespace Infrastructure.Data.Configuration
 
 
             builder
-                .HasOne(x => x.User)
+                .HasOne(x => x.UserR)
                 .WithMany()
                 .HasForeignKey(x => x.UserId)
                 .IsRequired();
 
             builder
-                .HasMany(x => x.Ingredients)
+                .HasMany(x => x.IngredientsR)
                 .WithOne()
                 .HasForeignKey(x => x.RecipeId);
 
             builder
-                .HasMany(x => x.Steps)
+                .HasMany(x => x.StepsR)
                 .WithOne()
                 .HasForeignKey(x => x.RecipeId);
 

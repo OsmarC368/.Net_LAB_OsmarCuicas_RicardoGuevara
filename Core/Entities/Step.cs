@@ -13,6 +13,6 @@ namespace Core.Entities
         public string Description { get; set; } = "";
         public float Duration { get; set; }
         public int RecipeId { get; set; }
-        public virtual Recipe? Recipe { get; set; }
+        public virtual Recipe? RecipeS { get; set; }
     }
 }

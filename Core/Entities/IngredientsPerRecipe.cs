@@ -13,7 +13,7 @@ namespace Core.Entities
         public int IngredientId { get; set; }
         public float amount { get; set; }
 
-        public virtual Recipe? Recipe { get; set; }
-        public virtual Ingredient? Ingredient { get; set; }
+        public virtual Recipe? RecipeIPR { get; set; }
+        public virtual Ingredient? IngredientIPR { get; set; }
     }
 }

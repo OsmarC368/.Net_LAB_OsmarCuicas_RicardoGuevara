@@ -29,7 +29,7 @@ namespace Infrastructure.Data.Configuration
             builder.Property(x => x.Duration)
                 .IsRequired();
 
-            builder.HasOne(x => x.Recipe)
+            builder.HasOne(x => x.RecipeS)
                 .WithMany()
                 .HasForeignKey(x => x.RecipeId)
                 .IsRequired();

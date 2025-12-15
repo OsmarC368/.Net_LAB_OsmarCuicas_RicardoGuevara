@@ -12,11 +12,11 @@ namespace Core.Entities
         public string Name { get; set; } = "";
         public string Description { get; set; } = "";
         public string Type { get; set; } = "";
-        public virtual List<IngredientsPerRecipe> Ingredients { get; set; } = new();
-        public virtual List<Step> Steps { get; set; } = new();
+        public virtual List<IngredientsPerRecipe> IngredientsR { get; set; } = new();
+        public virtual List<Step> StepsR { get; set; } = new();
         public float DifficultyLevel { get; set; }
         public int Visibility { get; set; }
         public int UserId { get; set; }
-        public virtual User? User { get; set; }
+        public virtual User? UserR { get; set; }
     }
 }

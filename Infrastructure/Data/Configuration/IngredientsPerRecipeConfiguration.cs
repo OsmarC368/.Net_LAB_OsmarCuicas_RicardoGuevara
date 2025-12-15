@@ -20,13 +20,13 @@ namespace Infrastructure.Data.Configuration
                 .UseIdentityColumn();
 
             builder
-                .HasOne(x => x.Recipe)
+                .HasOne(x => x.RecipeIPR)
                 .WithMany()
                 .HasForeignKey(x => x.RecipeId)
                 .IsRequired();
 
             builder
-                .HasOne(x => x.Ingredient)
+                .HasOne(x => x.IngredientIPR)
                 .WithMany()
                 .HasForeignKey(x => x.IngredientId)
                 .IsRequired();
