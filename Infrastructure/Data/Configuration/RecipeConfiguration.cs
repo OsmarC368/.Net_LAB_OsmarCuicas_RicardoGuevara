@@ -47,7 +47,7 @@ namespace Infrastructure.Data.Configuration
             builder
                 .HasOne(x => x.UserR)
                 .WithMany()
-                .HasForeignKey(x => x.UserId)
+                .HasForeignKey(x => x.UserIdR)
                 .IsRequired();
 
             builder
@@ -58,7 +58,7 @@ namespace Infrastructure.Data.Configuration
             builder
                 .HasMany(x => x.StepsR)
                 .WithOne()
-                .HasForeignKey(x => x.RecipeId);
+                .HasForeignKey(x => x.RecipeIdS);
 
 
             builder.ToTable("Recipes");

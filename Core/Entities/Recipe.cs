@@ -16,7 +16,7 @@ namespace Core.Entities
         public virtual List<Step> StepsR { get; set; } = new();
         public float DifficultyLevel { get; set; }
         public int Visibility { get; set; }
-        public int UserId { get; set; }
+        public int UserIdR { get; set; }
         public virtual User? UserR { get; set; }
     }
 }

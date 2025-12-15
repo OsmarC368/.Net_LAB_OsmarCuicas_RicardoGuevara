@@ -28,7 +28,7 @@ namespace Infrastructure.Data.Configuration
             builder
                 .HasOne(x => x.IngredientIPR)
                 .WithMany()
-                .HasForeignKey(x => x.IngredientId)
+                .HasForeignKey(x => x.IngredientIdIPR)
                 .IsRequired();
 
             builder

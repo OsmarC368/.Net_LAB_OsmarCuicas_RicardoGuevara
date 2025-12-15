@@ -9,7 +9,7 @@ namespace Core.Interfaces.Entities
     {
         public int id { get; set; }
         public int RecipeId { get; set; }
-        public int IngredientId { get; set; }
+        public int IngredientIdIPR { get; set; }
         public float amount { get; set; }
     }
 }

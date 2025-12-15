@@ -16,7 +16,7 @@ namespace Core.Interfaces.Entities
         public List<Step> StepsR { get; set; }
         public float DifficultyLevel { get; set; }
         public int Visibility { get; set; }
-        public int UserId { get; set; }
+        public int UserIdR { get; set; }
 
     }
 }

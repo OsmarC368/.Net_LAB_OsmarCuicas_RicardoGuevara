@@ -45,7 +45,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.HasMany(x => x.Recipes)
             .WithOne()
-            .HasForeignKey(x => x.UserId);
+            .HasForeignKey(x => x.UserIdR);
 
         builder.ToTable("Users");
     }

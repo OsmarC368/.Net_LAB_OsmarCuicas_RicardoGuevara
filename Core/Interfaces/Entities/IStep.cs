@@ -11,7 +11,7 @@ namespace Core.Interfaces.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public float Duration { get; set; }
-        public int RecipeId { get; set; }
+        public int RecipeIdS { get; set; }
 
     }
 }

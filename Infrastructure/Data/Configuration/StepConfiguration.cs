@@ -31,7 +31,7 @@ namespace Infrastructure.Data.Configuration
 
             builder.HasOne(x => x.RecipeS)
                 .WithMany()
-                .HasForeignKey(x => x.RecipeId)
+                .HasForeignKey(x => x.RecipeIdS)
                 .IsRequired();
 
             builder.ToTable("Steps");
