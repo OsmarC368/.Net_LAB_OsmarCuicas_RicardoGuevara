@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Web\\Web.csproj": {}
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\web\\Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\osmar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\obj\\",
+        "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\gueva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\osmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gueva\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,8 +37,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -54,40 +53,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\osmar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\gueva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\osmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gueva\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -99,8 +84,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
+              "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
               }
             }
           }
@@ -114,8 +99,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -147,40 +131,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\osmar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\obj\\",
+        "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\gueva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\osmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gueva\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -192,8 +162,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
+              "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
               }
             }
           }
@@ -207,8 +177,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -238,40 +207,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Web\\Web.csproj": {
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\web\\Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Web\\Web.csproj",
+        "projectUniqueName": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\web\\Web.csproj",
         "projectName": "Web",
-        "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Web\\Web.csproj",
-        "packagesPath": "C:\\Users\\osmar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Web\\obj\\",
+        "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\web\\Web.csproj",
+        "packagesPath": "C:\\Users\\gueva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\osmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gueva\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -283,14 +238,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
+              "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
               },
-              "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Infrastructure\\Infrastructure.csproj"
               },
-              "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {
-                "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj"
+              "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj"
               }
             }
           }
@@ -304,8 +259,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -375,24 +329,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -401,7 +337,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
