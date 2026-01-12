@@ -9,6 +9,7 @@ using System.Text;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace Services.Services
 {
@@ -96,11 +97,28 @@ namespace Services.Services
 
         public async Task<Response<ResponseLogin>> Login(string email, string password)
 		{
-			User user = await _unitOfWork.UserRepository.Login(email, password);
+			User user = await _unitOfWork.UserRepository.GetByEmail(email);
 
 			if (user == null)
 			{
-				return new Response<ResponseLogin> { Ok = false, Mensaje = "Email y/o contraseña incorrecta.", Datos = null};			
+				return new Response<ResponseLogin>
+				{
+					Ok = false,
+					Mensaje = "Email y/o contraseña incorrecta.",
+					Datos = null
+				};
+			}
+
+			bool passwordOk = BCrypt.Net.BCrypt.Verify(password, user.Password);
+
+			if (!passwordOk)
+			{
+				return new Response<ResponseLogin>
+				{
+					Ok = false,
+					Mensaje = "Email y/o contraseña incorrecta.",
+					Datos = null
+				};
 			}
 
 			var tokenHandler = new JwtSecurityTokenHandler();
@@ -128,56 +146,57 @@ namespace Services.Services
         public async Task<Response<RegisterResponse>> Register(RegisterResponse registerResponse)
         {
             if (string.IsNullOrEmpty(registerResponse.Name) ||
-                string.IsNullOrEmpty(registerResponse.Lastname) ||
-                string.IsNullOrEmpty(registerResponse.Email) ||
-                string.IsNullOrEmpty(registerResponse.Password))
-            {
-                return new Response<RegisterResponse>
-                {
-                    Ok = false,
-                    Mensaje = "Todos los campos son obligatorios",
-                    Datos = null
-                };
-            }
+				string.IsNullOrEmpty(registerResponse.Lastname) ||
+				string.IsNullOrEmpty(registerResponse.Email) ||
+				string.IsNullOrEmpty(registerResponse.Password))
+			{
+				return new Response<RegisterResponse>
+				{
+					Ok = false,
+					Mensaje = "Todos los campos son obligatorios",
+					Datos = null
+				};
+			}
 
-            var existingUser = await _unitOfWork.UserRepository.GetByEmail(registerResponse.Email);
-            if (existingUser != null)
-            {
-                return new Response<RegisterResponse>
-                {
-                    Ok = false,
-                    Mensaje = "El email ya está registrado",
-                    Datos = null
-                };
-            }
+			var existingUser = await _unitOfWork.UserRepository.GetByEmail(registerResponse.Email);
+			if (existingUser != null)
+			{
+				return new Response<RegisterResponse>
+				{
+					Ok = false,
+					Mensaje = "El email ya está registrado",
+					Datos = null
+				};
+			}
 
-            var user = new User
-            {
-                Name = registerResponse.Name,
-                Lastname = registerResponse.Lastname,
-                Email = registerResponse.Email,
-                Password = registerResponse.Password,
-                UserTypeID = registerResponse.UserTypeID,
-            };
+			string hashedPassword = BCrypt.Net.BCrypt.HashPassword(registerResponse.Password);
 
-            await _unitOfWork.UserRepository.AddAsync(user);
-            await _unitOfWork.CommitAsync();
+			var user = new User
+			{
+				Name = registerResponse.Name,
+				Lastname = registerResponse.Lastname,
+				Email = registerResponse.Email,
+				Password = hashedPassword,
+				UserTypeID = registerResponse.UserTypeID,
+			};
 
-            var response = new RegisterResponse
-            {
-                Name = user.Name,
-                Lastname = user.Lastname,
-                Email = user.Email,
-                Password = user.Password,
-                UserTypeID = user.UserTypeID
-            };
+			await _unitOfWork.UserRepository.AddAsync(user);
+			await _unitOfWork.CommitAsync();
 
-            return new Response<RegisterResponse>
-            {
-                Ok = true,
-                Mensaje = "Usuario registrado correctamente",
-                Datos = response
-            };
+			var response = new RegisterResponse
+			{
+				Name = user.Name,
+				Lastname = user.Lastname,
+				Email = user.Email,
+				UserTypeID = user.UserTypeID
+			};
+
+			return new Response<RegisterResponse>
+			{
+				Ok = true,
+				Mensaje = "Usuario registrado correctamente",
+				Datos = response
+			};
         }
     }
 }
