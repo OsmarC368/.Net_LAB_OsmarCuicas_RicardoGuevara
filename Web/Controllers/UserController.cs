@@ -4,6 +4,7 @@ using Core.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.DTOs;
 
 namespace Web.Controllers
 {
@@ -94,7 +95,7 @@ namespace Web.Controllers
 		}
 
         [HttpPost("login")]
-		public async Task<IActionResult> Login([FromBody] User user)
+		public async Task<IActionResult> Login([FromBody] LoginRequestDto user)
 		{
 			try
 			{
