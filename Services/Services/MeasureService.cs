@@ -12,7 +12,7 @@ namespace Services.Services
 {
     public class MeasureService : IMeasureService
     {
-         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         public MeasureService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -68,7 +68,7 @@ namespace Services.Services
 
 			Measure measureToUpdate = await _unitOfWork.MeasureRepository.GetByIdAsync(measureUpdatedId);
 
-			if (measureUpdated == null)
+			if (measureToUpdate == null)
 				throw new ArgumentException("Id de la medida a actualizar inválido");
 
 			measureToUpdate.name = measureUpdated.name;
