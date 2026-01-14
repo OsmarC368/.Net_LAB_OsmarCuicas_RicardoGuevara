@@ -8,10 +8,12 @@ namespace Services.Validators
         public UserValidator()
         {
             RuleFor(x => x.Name)
+                .NotNull().WithMessage("El nombre es obligatorio")
                 .NotEmpty().WithMessage("El nombre es obligatorio")
                 .MaximumLength(255).WithMessage("El nombre no puede superar los 255 caracteres");
 
             RuleFor(x => x.Lastname)
+                .NotNull().WithMessage("El apellido es obligatorio")
                 .NotEmpty().WithMessage("El apellido es obligatorio")
                 .MaximumLength(255).WithMessage("El apellido no puede superar los 255 caracteres");
 

@@ -10,6 +10,7 @@ using System.Security.Claims;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BCrypt.Net;
+using System.ComponentModel.DataAnnotations;
 
 namespace Services.Services
 {
@@ -76,10 +77,19 @@ namespace Services.Services
 			if (UserToUpdate == null)
 				throw new ArgumentException("Id del usuario a actualizar inválido");
 
+			var existingUser = await _unitOfWork.UserRepository.GetByEmail(newValuesEntity.Email);
+			if (existingUser != null && existingUser.Id != entityToUpdateId)
+			{
+				throw new ArgumentException("El email ya está en uso por otro usuario");
+			}
+
 			UserToUpdate.Name = newValuesEntity.Name;
 			UserToUpdate.Lastname = newValuesEntity.Lastname;
 			UserToUpdate.Email = newValuesEntity.Email;
-            UserToUpdate.Password = newValuesEntity.Password;
+            if (!string.IsNullOrWhiteSpace(newValuesEntity.Password))
+			{
+				UserToUpdate.Password = BCrypt.Net.BCrypt.HashPassword(newValuesEntity.Password);
+			}
 
 			await _unitOfWork.CommitAsync();
 
@@ -90,9 +100,26 @@ namespace Services.Services
         public async Task<Response<User>> Remove(int entityId)
 		{
 			User user = await _unitOfWork.UserRepository.GetByIdAsync(entityId);
+
+			if (user == null)
+			{
+				return new Response<User>
+				{
+					Ok = false,
+					Mensaje = "Usuario no encontrado",
+					Datos = null
+				};
+			}
+
 			_unitOfWork.UserRepository.Remove(user);
 			await _unitOfWork.CommitAsync();
-			return new Response<User> { Ok = true, Mensaje = "Usuario eliminado", Datos = null };
+
+			return new Response<User>
+			{
+				Ok = true,
+				Mensaje = "Usuario eliminado",
+				Datos = null
+			};
 		}
 
         public async Task<Response<ResponseLogin>> Login(string email, string password)
@@ -145,15 +172,36 @@ namespace Services.Services
 
         public async Task<Response<RegisterResponse>> Register(RegisterResponse registerResponse)
         {
-            if (string.IsNullOrEmpty(registerResponse.Name) ||
-				string.IsNullOrEmpty(registerResponse.Lastname) ||
-				string.IsNullOrEmpty(registerResponse.Email) ||
-				string.IsNullOrEmpty(registerResponse.Password))
+
+			if (registerResponse.UserTypeID <= 0)
+			{
+				return new Response<RegisterResponse>
+				{
+					Ok = false,
+					Mensaje = "Tipo de usuario inválido",
+					Datos = null
+				};
+			}
+
+            if (string.IsNullOrWhiteSpace(registerResponse.Name) ||
+				string.IsNullOrWhiteSpace(registerResponse.Lastname) ||
+				string.IsNullOrWhiteSpace(registerResponse.Email) ||
+				string.IsNullOrWhiteSpace(registerResponse.Password))
 			{
 				return new Response<RegisterResponse>
 				{
 					Ok = false,
 					Mensaje = "Todos los campos son obligatorios",
+					Datos = null
+				};
+			}
+
+			if (registerResponse.Password.Length < 8)
+			{
+				return new Response<RegisterResponse>
+				{
+					Ok = false,
+					Mensaje = "La contraseña debe tener al menos 8 caracteres",
 					Datos = null
 				};
 			}
