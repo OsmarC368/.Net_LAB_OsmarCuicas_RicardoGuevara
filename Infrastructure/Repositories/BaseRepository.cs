@@ -49,5 +49,11 @@ namespace Infrastructure.Repositories
             var entityEntry = await dbSet.AddAsync(entity);
             return entityEntry.Entity;
         }
+
+        public virtual async Task<Entity> GetByName(string name)
+        {
+            return await context.Set<Entity>()
+                .FirstOrDefaultAsync(e => EF.Property<string>(e, "name") == name);
+        }
     }
 }
