@@ -80,8 +80,7 @@ namespace Web.Controllers
         /// <summary>
 		/// Método para eliminar un ingrediente
 		/// </summary>
-		/// <returns>Respuesta con mensaje de éxito de eliminado y datos null</returns>
-		[HttpDelete]
+		[HttpDelete("{id}")]
 		public async Task<ActionResult<Response<Ingredient>>> Delete(int id)
 		{
 			try
