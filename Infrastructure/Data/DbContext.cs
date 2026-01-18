@@ -10,6 +10,9 @@ public class AppDbContext : DbContext
     public DbSet<Ingredient> Ingredients { get; set; }
     public DbSet<Measure> Measure { get; set; }
     public DbSet<UserType> UserType { get; set; }
+    public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<Step> Steps { get; set; }
+    public DbSet<IngredientsPerRecipe> IngredientsPerRecipes { get; set; }
 
 	public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -22,6 +25,9 @@ public class AppDbContext : DbContext
         builder.ApplyConfigurationsFromAssembly(typeof(IngredientConfiguration).Assembly);
         builder.ApplyConfigurationsFromAssembly(typeof(MeasureConfiguration).Assembly);
         builder.ApplyConfigurationsFromAssembly(typeof(UserTypeConfiguration).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(RecipeConfiguration).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(StepConfiguration).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(IngredientsPerRecipeConfiguration).Assembly);
 	}
 
 }

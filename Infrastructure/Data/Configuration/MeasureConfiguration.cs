@@ -15,7 +15,7 @@ namespace Infrastructure.Data.Configuration
             builder.HasKey(x => x.id);
             builder.Property(x => x.id).UseIdentityColumn();
             builder.Property(x => x.name).IsRequired().HasMaxLength(255);
-            builder.Property(x => x.description).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.symbol).IsRequired().HasMaxLength(255);
 
             builder.ToTable("Measures");
         }

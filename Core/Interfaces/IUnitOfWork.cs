@@ -13,6 +13,9 @@ namespace Core.Interfaces
         IMeasureRepository  MeasureRepository{ get; }
         IUserRepository UserRepository { get; }
         IIngredientRepository IngredientRepository { get; }
+        IIngredientsPerRecipeRepository IngredientsPerRecipeRepository { get; }
+        IStepRepository StepRepository { get; }
+        IRecipeRepository RecipeRepository { get; }
 
         Task<int> CommitAsync();
     }
