@@ -1,0 +1,6 @@
+services:
+  api:
+    image: "ozeta368/net-lab-osmar:v3"
+    ports:
+      - "5295:80"
+
