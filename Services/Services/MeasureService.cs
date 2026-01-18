@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Responses;
 
+
 namespace Services.Services
 {
     public class MeasureService : IMeasureService
@@ -48,6 +49,10 @@ namespace Services.Services
 				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
 			}
 
+            var exists = await _unitOfWork.MeasureRepository.GetByName(newMeasure.name);
+            if (exists != null)
+                throw new ArgumentException("La medida ya existe");
+
 			var entityAdded = await _unitOfWork.MeasureRepository.AddAsync(newMeasure);
 			await _unitOfWork.CommitAsync();
 
@@ -65,6 +70,14 @@ namespace Services.Services
 				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
 
 			}
+
+            var existingMeasure = await _unitOfWork.MeasureRepository
+                .GetByName(measureUpdated.name);
+
+            if (existingMeasure != null && existingMeasure.id != measureUpdatedId)
+            {
+                throw new ArgumentException("Ya existe otra medida con ese nombre");
+            }
 
 			Measure measureToUpdate = await _unitOfWork.MeasureRepository.GetByIdAsync(measureUpdatedId);
 
