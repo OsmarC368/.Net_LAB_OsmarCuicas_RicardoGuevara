@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251215003316_AddUsersTable")]
-    partial class AddUsersTable
+    [Migration("20260115171343_AddUserTypesTable")]
+    partial class AddUserTypesTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

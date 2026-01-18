@@ -110,7 +110,8 @@ namespace Services.Services
 				Subject = new ClaimsIdentity(new Claim[]
 				{
 					new Claim(ClaimTypes.Email, user.Email),
-					new Claim("id", user.Id.ToString())
+					new Claim("id", user.Id.ToString()),
+					new Claim("userType", user.UserTypeID.ToString())
 				}),
 				Expires = DateTime.UtcNow.AddMinutes(7),
 				Issuer = "MiApiBackend",
