@@ -10,6 +10,6 @@ namespace Core.Entities
     {
         public int id { get; set; }
         public string name { get; set; } = "";
-        public string description { get; set; } = "";
+        public string symbol { get; set; } = "";
     }
 }

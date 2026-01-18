@@ -74,6 +74,15 @@ builder.Services.AddScoped<IMeasureService, MeasureService>();
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 builder.Services.AddScoped<IIngredientService, IngredientService>();
 
+builder.Services.AddScoped<IIngredientsPerRecipeRepository, IngredientsPerRecipeRepository>();
+builder.Services.AddScoped<IIngredientsPerRecipeService, IngredientsPerRecipeService>();
+
+builder.Services.AddScoped<IStepRepository, StepRepository>();
+builder.Services.AddScoped<IStepService, StepService>();
+
+builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
+builder.Services.AddScoped<IRecipeService, RecipeService>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
 {

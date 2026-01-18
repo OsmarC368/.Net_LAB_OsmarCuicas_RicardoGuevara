@@ -7,20 +7,20 @@ using FluentValidation;
 
 namespace Services.Validators
 {
-    public class MeasureValidator : AbstractValidator<Measure>
+    public class StepValidator : AbstractValidator<Step>
     {
-        public MeasureValidator()
+        public StepValidator()
         {
-            RuleFor(x => x.name)
+            RuleFor(x => x.Name)
                 .NotEmpty()
                 .MaximumLength(90)
                 .WithMessage("El Nombre es Obligatorio y no debe exceder los 90 caracteres.");
 
-            RuleFor(x => x.symbol)
+            RuleFor(x => x.Description)
                 .NotEmpty()
                 .MaximumLength(255)
-                .WithMessage("El Símbolo es Obligatorio y no debe exceder los 90 caracteres.");
-                
-        } 
+                .WithMessage("La Descripción es Obligatorio y no debe exceder los 255 caracteres.");
+
+        }
     }
 }
