@@ -18,5 +18,6 @@ namespace Core.Entities
         public int Visibility { get; set; }
         public int UserIdR { get; set; }
         public virtual User? UserR { get; set; }
+        public string ImageUrl { get; set; } = "";
     }
 }

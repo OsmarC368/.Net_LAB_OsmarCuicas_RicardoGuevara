@@ -35,6 +35,12 @@ namespace Infrastructure.Data.Configuration
                 .Property(x => x.amount)
                 .IsRequired();
 
+            builder
+                .HasOne(x => x.MeasureIPR)
+                .WithMany()
+                .HasForeignKey(x => x.MeasureIdIPR)
+                .IsRequired();
+
             builder.ToTable("IngredientsPerRecipe");
         }
     }

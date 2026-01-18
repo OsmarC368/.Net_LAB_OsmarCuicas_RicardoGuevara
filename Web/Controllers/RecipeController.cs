@@ -51,10 +51,21 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Response<Recipe>>> Post([FromBody] Recipe recipe)
+        public async Task<ActionResult<Response<Recipe>>> Post([FromForm] Recipe recipe, IFormFile imageFile)
         {
             try
             {
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                    var filePath = Path.Combine("wwwroot/images", fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+                    recipe.ImageUrl = "/images/" + fileName;
+                }
+
                 var response = await _service.Create(recipe);
                 return Ok(response);
             }

@@ -79,7 +79,7 @@ namespace Web.Controllers
 		/// Método para eliminar a un usuario
 		/// </summary>
 		/// <returns>Respuesta con mensaje de éxito de eliminado y datos null</returns>
-		[HttpDelete]
+		[HttpDelete("{id}")]
 		public async Task<ActionResult<Response<User>>> Delete(int id)
 		{
 			try
