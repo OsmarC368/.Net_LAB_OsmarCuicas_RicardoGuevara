@@ -5,6 +5,5 @@ namespace Core.Interfaces.Repositories
 {
     public interface IMeasureRepository : IBaseRepository<Measure>
     {
-        
     }
 }

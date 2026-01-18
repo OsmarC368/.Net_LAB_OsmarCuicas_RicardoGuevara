@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "pZdlMTHFrkc=",
+  "dgSpecHash": "xrJozj8evVI=",
   "success": true,
   "projectFilePath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\gueva\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\gueva\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\gueva\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\gueva\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",

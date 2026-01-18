@@ -8,5 +8,6 @@ namespace Core.Interfaces.Repositories
         void RemoveRange(IEnumerable<Entity> entities);
         Task Update(Entity entity);
         Task<Entity> AddAsync(Entity entity);
+        Task<Entity> GetByName(string name);
     }
 }

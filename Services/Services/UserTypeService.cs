@@ -48,6 +48,19 @@ namespace Services.Services
 				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
 			}
 
+            var existing = await _unitOfWork.UserTypeRepository
+                .GetByName(newUserType.name);
+
+            if (existing != null)
+            {
+                return new Response<UserType>
+                {
+                    Ok = false,
+                    Mensaje = "Ya existe un tipo de usuario con ese nombre",
+                    Datos = null
+                };
+            }
+
 			var entityAdded = await _unitOfWork.UserTypeRepository.AddAsync(newUserType);
 			await _unitOfWork.CommitAsync();
 
@@ -65,6 +78,14 @@ namespace Services.Services
 				throw new ArgumentException(resultValidation.Errors[0].ErrorMessage.ToString());
 
 			}
+
+            var existing = await _unitOfWork.UserTypeRepository
+                .GetByName(userTypeUpdated.name);
+
+            if (existing != null && existing.id != userTypeUpdatedId)
+            {
+                throw new ArgumentException("Ya existe otro tipo de usuario con ese nombre");
+            }
 
 			UserType UserTypeToUpdate = await _unitOfWork.UserTypeRepository.GetByIdAsync(userTypeUpdatedId);
 
