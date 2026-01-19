@@ -60,6 +60,10 @@ namespace Infrastructure.Data.Configuration
                 .WithOne()
                 .HasForeignKey(x => x.RecipeIdS);
 
+            builder
+                .Property(x => x.ImageUrl)
+                .IsRequired(false);
+
 
             builder.ToTable("Recipes");
         }

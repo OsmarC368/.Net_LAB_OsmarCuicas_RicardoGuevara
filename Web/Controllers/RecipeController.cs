@@ -51,7 +51,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Response<Recipe>>> Post([FromForm] Recipe recipe, IFormFile imageFile)
+        public async Task<ActionResult<Response<Recipe>>> Post([FromForm] Recipe recipe, [FromForm] IFormFile imageFile)
         {
             try
             {
