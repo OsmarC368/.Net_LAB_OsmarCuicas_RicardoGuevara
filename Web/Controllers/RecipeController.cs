@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Web.Auxiliar;
+using System.Text.Json;
 
 namespace Web.Controllers
 {
@@ -52,48 +53,62 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult<Response<Recipe>>> Post([FromBody] Recipe recipe)
+        {
+            try
+            {
+                var response = await _service.Create(recipe);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpPost("image")]
         public async Task<ActionResult<Response<Recipe>>> Post([FromForm] CreateRecipeRequest request)
         {
             try
             {
-                if (request.ImageFile != null && request.ImageFile.Length > 0)
-                {
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(request.ImageFile.FileName);
-                    var filePath = Path.Combine("wwwroot/images", fileName);
-                    Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await request.ImageFile.CopyToAsync(stream);
-                    }
-                
-                    var recipe = new Recipe
-                    {
-                        Name = request.Name,
-                        Description = request.Description,
-                        Type = request.Type,
-                        DifficultyLevel = request.DifficultyLevel,
-                        Visibility = request.Visibility,
-                        UserIdR = request.UserRID,
-                        ImageUrl = "/images/" + fileName
-                    };
+                var imageUrl = string.Empty;
+                using var httpClient = new HttpClient();
+                using var formData = new MultipartFormDataContent();
+                var stream = request.ImageFile.OpenReadStream();
+                var fileContent = new StreamContent(stream);
+                fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(request.ImageFile.ContentType ?? "image/jpeg");
+                formData.Add(fileContent, "source", request.ImageFile.FileName);
+                formData.Add(new StringContent("json"), "format");
 
-                    var response = await _service.Create(recipe);
-                    return Ok(response);
-                }
-                else
+                var apiImageResponse = await httpClient.PostAsync("https://freeimage.host/api/1/upload", formData);
+
+                if (!apiImageResponse.IsSuccessStatusCode)
                 {
-                    var recipe = new Recipe {
-                        Name = request.Name,
-                        Description = request.Description,
-                        Type = request.Type,
-                        DifficultyLevel = request.DifficultyLevel,
-                        Visibility = request.Visibility,
-                        UserIdR = request.UserRID,
-                        ImageUrl = null
-                    };
-                    var response = await _service.Create(recipe);
-                    return Ok(response);
+                    return BadRequest(new { message = "Failed to upload image" });
                 }
+
+                var jsonApiImageResponse = await apiImageResponse.Content.ReadAsStringAsync();
+                var responseDeserealized = JsonSerializer.Deserialize<FreeImageResponse>(jsonApiImageResponse);
+
+                if (responseDeserealized?.Success == true)
+                {
+                    imageUrl = responseDeserealized.Image.Url;
+                }
+            
+                var recipe = new Recipe
+                {
+                    Name = request.Name,
+                    Description = request.Description,
+                    Type = request.Type,
+                    DifficultyLevel = request.DifficultyLevel,
+                    Visibility = request.Visibility,
+                    UserIdR = request.UserRID,
+                    ImageUrl = imageUrl
+                };
+
+                var response = await _service.Create(recipe);
+                return Ok(response);
+                
             }
             catch (Exception ex)
             {
@@ -121,7 +136,6 @@ namespace Web.Controllers
             try
 			{
 				var Response = await _service.Remove(id);
-
 				return Ok(Response);
 			}
 			catch (Exception ex)

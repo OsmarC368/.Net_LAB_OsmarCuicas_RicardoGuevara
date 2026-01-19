@@ -26,6 +26,9 @@ namespace Infrastructure.Data.Configuration
                 .IsRequired()
                 .HasMaxLength(255);
 
+            builder.Property(x => x.imageURL)
+                .IsRequired(false);
+
             builder.Property(x => x.Duration)
                 .IsRequired();
 
