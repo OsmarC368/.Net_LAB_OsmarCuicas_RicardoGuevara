@@ -97,15 +97,33 @@ namespace Services.Services
 
         public async Task<Response<ResponseLogin>> Login(string email, string password)
 		{
-			User user = await _unitOfWork.UserRepository.Login(email, password);
+			var user = await _unitOfWork.UserRepository.GetByEmail(email);
 
 			if (user == null)
 			{
-				return new Response<ResponseLogin> { Ok = false, Mensaje = "Email y/o contraseña incorrecta.", Datos = null};			
+				return new Response<ResponseLogin>
+				{
+					Ok = false,
+					Mensaje = "Email y/o contraseña incorrecta.",
+					Datos = null
+				};
+			}
+
+			bool passwordValid = BCrypt.Net.BCrypt.Verify(password, user.Password);
+
+			if (!passwordValid)
+			{
+				return new Response<ResponseLogin>
+				{
+					Ok = false,
+					Mensaje = "Email y/o contraseña incorrecta.",
+					Datos = null
+				};
 			}
 
 			var tokenHandler = new JwtSecurityTokenHandler();
 			var key = Encoding.ASCII.GetBytes("superclaveultrasegura_12345678900000!");
+
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(new Claim[]
@@ -116,70 +134,79 @@ namespace Services.Services
 				}),
 				Expires = DateTime.UtcNow.AddMinutes(30),
 				Issuer = "MiApiBackend",
-    			Audience = "MiApiClientes",
-				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+				Audience = "MiApiClientes",
+				SigningCredentials = new SigningCredentials(
+					new SymmetricSecurityKey(key),
+					SecurityAlgorithms.HmacSha256Signature)
 			};
+
 			var token = tokenHandler.CreateToken(tokenDescriptor);
-			string userToken = tokenHandler.WriteToken(token);
 
-
-
-			return new Response<ResponseLogin> { Ok = true, Mensaje = "Inicio de sesión correcto.", Datos = new ResponseLogin {jwt = userToken, idusersession = user.Id } };
+			return new Response<ResponseLogin>
+			{
+				Ok = true,
+				Mensaje = "Inicio de sesión correcto.",
+				Datos = new ResponseLogin
+				{
+					jwt = tokenHandler.WriteToken(token),
+					idusersession = user.Id
+				}
+			};
 		}
 
         public async Task<Response<RegisterResponse>> Register(RegisterResponse registerResponse)
-        {
-            if (string.IsNullOrEmpty(registerResponse.Name) ||
-                string.IsNullOrEmpty(registerResponse.Lastname) ||
-                string.IsNullOrEmpty(registerResponse.Email) ||
-                string.IsNullOrEmpty(registerResponse.Password))
-            {
-                return new Response<RegisterResponse>
-                {
-                    Ok = false,
-                    Mensaje = "Todos los campos son obligatorios",
-                    Datos = null
-                };
-            }
+		{
+			if (string.IsNullOrEmpty(registerResponse.Name) ||
+				string.IsNullOrEmpty(registerResponse.Lastname) ||
+				string.IsNullOrEmpty(registerResponse.Email) ||
+				string.IsNullOrEmpty(registerResponse.Password))
+			{
+				return new Response<RegisterResponse>
+				{
+					Ok = false,
+					Mensaje = "Todos los campos son obligatorios",
+					Datos = null
+				};
+			}
 
-            var existingUser = await _unitOfWork.UserRepository.GetByEmail(registerResponse.Email);
-            if (existingUser != null)
-            {
-                return new Response<RegisterResponse>
-                {
-                    Ok = false,
-                    Mensaje = "El email ya está registrado",
-                    Datos = null
-                };
-            }
+			var existingUser = await _unitOfWork.UserRepository.GetByEmail(registerResponse.Email);
+			if (existingUser != null)
+			{
+				return new Response<RegisterResponse>
+				{
+					Ok = false,
+					Mensaje = "El email ya está registrado",
+					Datos = null
+				};
+			}
 
-            var user = new User
-            {
-                Name = registerResponse.Name,
-                Lastname = registerResponse.Lastname,
-                Email = registerResponse.Email,
-                Password = registerResponse.Password,
-                UserTypeID = registerResponse.UserTypeID,
-            };
+			var user = new User
+			{
+				Name = registerResponse.Name,
+				Lastname = registerResponse.Lastname,
+				Email = registerResponse.Email,
+				Password = BCrypt.Net.BCrypt.HashPassword(registerResponse.Password), 
+				UserTypeID = registerResponse.UserTypeID,
+			};
 
-            await _unitOfWork.UserRepository.AddAsync(user);
-            await _unitOfWork.CommitAsync();
+			await _unitOfWork.UserRepository.AddAsync(user);
+			await _unitOfWork.CommitAsync();
 
-            var response = new RegisterResponse
-            {
-                Name = user.Name,
-                Lastname = user.Lastname,
-                Email = user.Email,
-                Password = user.Password,
-                UserTypeID = user.UserTypeID
-            };
+			var response = new RegisterResponse
+			{
+				Name = user.Name,
+				Lastname = user.Lastname,
+				Email = user.Email,
+				Password = registerResponse.Password,
+				UserTypeID = user.UserTypeID
+			};
 
-            return new Response<RegisterResponse>
-            {
-                Ok = true,
-                Mensaje = "Usuario registrado correctamente",
-                Datos = response
-            };
-        }
+			return new Response<RegisterResponse>
+			{
+				Ok = true,
+				Mensaje = "Usuario registrado correctamente",
+				Datos = response
+			};
+		}
     }
 }
