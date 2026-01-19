@@ -88,12 +88,12 @@ namespace Web.Controllers
                 }
 
                 var jsonApiImageResponse = await apiImageResponse.Content.ReadAsStringAsync();
-                var responseDeserealized = JsonSerializer.Deserialize(jsonApiImageResponse);
-
-                // if (responseDeserealized?.Success?.Code == 200 && responseDeserealized.Image?.Url != null)
-                // {
-                //     imageUrl = responseDeserealized.Image.Url;
-                // }
+                using(var doc = JsonDocument.Parse(jsonApiImageResponse))
+                {
+                    var root = doc.RootElement;
+                    var data = root.GetProperty("data");
+                    imageUrl = data.GetProperty("url").GetString() ?? string.Empty;
+                }
             
                 var recipe = new Recipe
                 {
