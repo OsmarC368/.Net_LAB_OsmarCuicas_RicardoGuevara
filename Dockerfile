@@ -3,10 +3,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copiar los .csproj primero (capa de cache)
-COPY ["Web/Web.csproj",                    "Web/"]
-COPY ["Core/Core.csproj",                  "Core/"]
+COPY ["Web/Web.csproj", "Web/"]
+COPY ["Core/Core.csproj", "Core/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
-COPY ["Services/Services.csproj",          "Services/"]
+COPY ["Services/Services.csproj", "Services/"]
 
 # Restaurar dependencias (usa el .sln si tienes referencias entre proyectos)
 RUN dotnet restore "Web/Web.csproj"  

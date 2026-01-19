@@ -11,7 +11,8 @@ namespace Web.Auxiliar
         public string Description { get; set; } = string.Empty;
         public float Duration { get; set; }
         public string imageURL { get; set; } = string.Empty;
-        
+        public int RecipeIdS { get; set; }
+
         public IFormFile? ImageFile { get; set; }
     }
 }

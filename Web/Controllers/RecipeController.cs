@@ -12,7 +12,7 @@ using System.Text.Json;
 
 namespace Web.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class RecipeController : ControllerBase

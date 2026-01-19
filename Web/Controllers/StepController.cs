@@ -13,7 +13,7 @@ using System.Text.Json;
 
 namespace Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class StepController : ControllerBase
@@ -101,7 +101,8 @@ namespace Web.Controllers
                     Name = request.Name,
                     Description = request.Description,
                     Duration = request.Duration,
-                    imageURL = imageUrl
+                    imageURL = imageUrl,
+                    RecipeIdS = request.RecipeIdS
                 };
 
                 var response = await _service.Create(step);
