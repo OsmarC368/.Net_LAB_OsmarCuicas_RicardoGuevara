@@ -7,6 +7,7 @@ using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Web.Auxiliar;
 
 namespace Web.Controllers
 {
@@ -51,23 +52,48 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Response<Recipe>>> Post([FromForm] Recipe recipe, [FromForm] IFormFile imageFile)
+        public async Task<ActionResult<Response<Recipe>>> Post([FromForm] CreateRecipeRequest request)
         {
             try
             {
-                if (imageFile != null && imageFile.Length > 0)
+                if (request.ImageFile != null && request.ImageFile.Length > 0)
                 {
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(request.ImageFile.FileName);
                     var filePath = Path.Combine("wwwroot/images", fileName);
+                    Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        await imageFile.CopyToAsync(stream);
+                        await request.ImageFile.CopyToAsync(stream);
                     }
-                    recipe.ImageUrl = "/images/" + fileName;
-                }
+                
+                    var recipe = new Recipe
+                    {
+                        Name = request.Name,
+                        Description = request.Description,
+                        Type = request.Type,
+                        DifficultyLevel = request.DifficultyLevel,
+                        Visibility = request.Visibility,
+                        UserIdR = request.UserRID,
+                        ImageUrl = "/images/" + fileName
+                    };
 
-                var response = await _service.Create(recipe);
-                return Ok(response);
+                    var response = await _service.Create(recipe);
+                    return Ok(response);
+                }
+                else
+                {
+                    var recipe = new Recipe {
+                        Name = request.Name,
+                        Description = request.Description,
+                        Type = request.Type,
+                        DifficultyLevel = request.DifficultyLevel,
+                        Visibility = request.Visibility,
+                        UserIdR = request.UserRID,
+                        ImageUrl = null
+                    };
+                    var response = await _service.Create(recipe);
+                    return Ok(response);
+                }
             }
             catch (Exception ex)
             {
