@@ -9,6 +9,7 @@ using System.Text;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace Services.Services
 {
@@ -113,7 +114,7 @@ namespace Services.Services
 					new Claim("id", user.Id.ToString()),
 					new Claim("userType", user.UserTypeID.ToString())
 				}),
-				Expires = DateTime.UtcNow.AddMinutes(7),
+				Expires = DateTime.UtcNow.AddMinutes(30),
 				Issuer = "MiApiBackend",
     			Audience = "MiApiClientes",
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

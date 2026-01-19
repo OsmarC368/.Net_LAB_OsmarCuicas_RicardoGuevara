@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "BCrypt.Net-Next/4.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "FluentValidation/12.1.1": {
         "type": "package",
         "compile": {
@@ -142,6 +155,37 @@
     }
   },
   "libraries": {
+    "BCrypt.Net-Next/4.0.3": {
+      "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "type": "package",
+      "path": "bcrypt.net-next/4.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.0.3.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "ico.png",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/net6.0/BCrypt.Net-Next.dll",
+        "lib/net6.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml",
+        "readme.md"
+      ]
+    },
     "FluentValidation/12.1.1": {
       "sha512": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw==",
       "type": "package",
@@ -400,6 +444,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "BCrypt.Net-Next >= 4.0.3",
       "Core >= 1.0.0",
       "FluentValidation >= 12.1.1",
       "Microsoft.IdentityModel.Tokens >= 8.15.0",
@@ -407,19 +452,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\osmar\\.nuget\\packages\\": {}
+    "C:\\Users\\gueva\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
-      "packagesPath": "C:\\Users\\osmar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\obj\\",
+      "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
+      "packagesPath": "C:\\Users\\gueva\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\osmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\gueva\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -431,8 +476,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
+            "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
             }
           }
         }
@@ -453,6 +498,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "BCrypt.Net-Next": {
+            "target": "Package",
+            "version": "[4.0.3, )"
+          },
           "FluentValidation": {
             "target": "Package",
             "version": "[12.1.1, )"
@@ -480,15 +529,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
+            "version": "[8.0.23, 8.0.23]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
+            "version": "[8.0.23, 8.0.23]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
+            "version": "[8.0.23, 8.0.23]"
           }
         ],
         "frameworkReferences": {
@@ -496,7 +545,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

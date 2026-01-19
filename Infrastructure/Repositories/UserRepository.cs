@@ -19,8 +19,19 @@ namespace Infrastructure.Repositories
 
 		public virtual async ValueTask<User> Login(string email, string password)
 		{
-			return await dbSet.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).FirstOrDefaultAsync();
+			var user = await dbSet
+				.Where(u => u.Email.Equals(email))
+				.FirstOrDefaultAsync();
 
+			if (user == null)
+				return null;
+
+			bool passwordOk = BCrypt.Net.BCrypt.Verify(password, user.Password);
+
+			if (!passwordOk)
+				return null;
+
+			return user;
 		}
     }
 }
