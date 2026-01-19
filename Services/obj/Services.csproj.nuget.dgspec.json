@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {}
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\osmar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\obj\\",
+        "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\gueva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\osmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gueva\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -57,15 +57,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.23, 8.0.23]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.23, 8.0.23]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.23, 8.0.23]"
             }
           ],
           "frameworkReferences": {
@@ -73,21 +73,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {
+    "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\osmar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\obj\\",
+        "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\gueva\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\osmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gueva\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -99,8 +99,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\osmar\\OneDrive\\Escritorio\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
+              "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\gueva\\OneDrive\\Documentos\\Progra\\netLab\\.Net_LAB_OsmarCuicas_RicardoGuevara\\Core\\Core.csproj"
               }
             }
           }
@@ -152,15 +152,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.23, 8.0.23]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.23, 8.0.23]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.23, 8.0.23]"
             }
           ],
           "frameworkReferences": {
@@ -168,7 +168,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
