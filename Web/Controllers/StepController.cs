@@ -89,12 +89,12 @@ namespace Web.Controllers
                 }
 
                 var jsonApiImageResponse = await apiImageResponse.Content.ReadAsStringAsync();
-                var responseDeserealized = JsonSerializer.Deserialize<FreeImageResponse>(jsonApiImageResponse);
+                var responseDeserealized = JsonSerializer.Deserialize<ImgBBResponse>(jsonApiImageResponse);
 
-                if (responseDeserealized?.Success == true)
-                {
-                    imageUrl = responseDeserealized.Image.Url;
-                }
+                // if (responseDeserealized?.Success?.Code == 200 && responseDeserealized.Image?.Url != null)
+                // {
+                //     imageUrl = responseDeserealized.Image.Url;
+                // }
 
                 var step = new Step
                 {

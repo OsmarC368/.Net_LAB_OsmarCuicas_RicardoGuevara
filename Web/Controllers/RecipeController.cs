@@ -12,7 +12,7 @@ using System.Text.Json;
 
 namespace Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class RecipeController : ControllerBase
@@ -77,10 +77,10 @@ namespace Web.Controllers
                 var stream = request.ImageFile.OpenReadStream();
                 var fileContent = new StreamContent(stream);
                 fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(request.ImageFile.ContentType ?? "image/jpeg");
-                formData.Add(fileContent, "source", request.ImageFile.FileName);
-                formData.Add(new StringContent("json"), "format");
+                formData.Add(new StringContent("a265ee389c34416e946ea59c45925527"), "key");
+                formData.Add(fileContent, "image", request.ImageFile.FileName ?? "receta.png");
 
-                var apiImageResponse = await httpClient.PostAsync("https://freeimage.host/api/1/upload", formData);
+                var apiImageResponse = await httpClient.PostAsync("https://api.imgbb.com/1/upload", formData);
 
                 if (!apiImageResponse.IsSuccessStatusCode)
                 {
@@ -88,12 +88,12 @@ namespace Web.Controllers
                 }
 
                 var jsonApiImageResponse = await apiImageResponse.Content.ReadAsStringAsync();
-                var responseDeserealized = JsonSerializer.Deserialize<FreeImageResponse>(jsonApiImageResponse);
+                var responseDeserealized = JsonSerializer.Deserialize(jsonApiImageResponse);
 
-                if (responseDeserealized?.Success == true)
-                {
-                    imageUrl = responseDeserealized.Image.Url;
-                }
+                // if (responseDeserealized?.Success?.Code == 200 && responseDeserealized.Image?.Url != null)
+                // {
+                //     imageUrl = responseDeserealized.Image.Url;
+                // }
             
                 var recipe = new Recipe
                 {
