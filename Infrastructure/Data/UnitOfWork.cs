@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Entities;
 using Core.Interfaces;
+using Core.Interfaces.Entities;
 using Core.Interfaces.Repositories;
 using Infrastructure.Repositories;
 
@@ -18,6 +20,7 @@ namespace Infrastructure.Data
         private IIngredientsPerRecipeRepository? _ingredientsPerRecipeRepository;
         private IRecipeRepository? _recipeRepository;
         private IStepRepository? _stepRepository;
+        private IStepUserRepository? _stepUserRepository;
 
         public UnitOfWork(AppDbContext context) { this._context = context; }
 
@@ -28,6 +31,7 @@ namespace Infrastructure.Data
         public IIngredientsPerRecipeRepository IngredientsPerRecipeRepository => _ingredientsPerRecipeRepository ??= new IngredientsPerRecipeRepository(_context);
         public IStepRepository StepRepository => _stepRepository ??= new StepRepository(_context);
         public IRecipeRepository RecipeRepository => _recipeRepository ??= new RecipeRepository(_context);
+        public IStepUserRepository StepUserRepository => _stepUserRepository ??= new StepUserRepository(_context);
 
         public async Task<int> CommitAsync()
         {

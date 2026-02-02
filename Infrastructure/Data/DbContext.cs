@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<Recipe> Recipes { get; set; }
     public DbSet<Step> Steps { get; set; }
     public DbSet<IngredientsPerRecipe> IngredientsPerRecipes { get; set; }
+    public DbSet<StepUser> StepUsers { get; set; }
 
 	public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -28,6 +29,7 @@ public class AppDbContext : DbContext
         builder.ApplyConfigurationsFromAssembly(typeof(RecipeConfiguration).Assembly);
         builder.ApplyConfigurationsFromAssembly(typeof(StepConfiguration).Assembly);
         builder.ApplyConfigurationsFromAssembly(typeof(IngredientsPerRecipeConfiguration).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(StepUserConfiguration).Assembly);
 	}
 
 }

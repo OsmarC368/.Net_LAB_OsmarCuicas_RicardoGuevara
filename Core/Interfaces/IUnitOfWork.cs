@@ -16,6 +16,7 @@ namespace Core.Interfaces
         IIngredientsPerRecipeRepository IngredientsPerRecipeRepository { get; }
         IStepRepository StepRepository { get; }
         IRecipeRepository RecipeRepository { get; }
+        IStepUserRepository StepUserRepository { get; }
 
         Task<int> CommitAsync();
     }

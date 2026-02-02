@@ -83,6 +83,9 @@ builder.Services.AddScoped<IStepService, StepService>();
 builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
 builder.Services.AddScoped<IRecipeService, RecipeService>();
 
+builder.Services.AddScoped<IStepUserRepository, StepUserRepository>();
+builder.Services.AddScoped<IStepUserService, StepUserService>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
 {
