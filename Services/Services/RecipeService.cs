@@ -74,6 +74,7 @@ namespace Services.Services
 			recipeToUpdate.Description = recipeUpdated.Description;
 			recipeToUpdate.DifficultyLevel = recipeUpdated.DifficultyLevel;
 			recipeToUpdate.Visibility = recipeUpdated.Visibility;
+			recipeToUpdate.Servings = recipeUpdated.Servings;
 			recipeToUpdate.Type = recipeUpdated.Type;
 
 			await _unitOfWork.CommitAsync();

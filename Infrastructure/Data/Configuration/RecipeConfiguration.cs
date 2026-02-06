@@ -40,6 +40,10 @@ namespace Infrastructure.Data.Configuration
                 .IsRequired();
 
             builder
+                .Property(x => x.Servings)
+                .IsRequired();
+
+            builder
                 .Property(x => x.Visibility)
                 .IsRequired();
 

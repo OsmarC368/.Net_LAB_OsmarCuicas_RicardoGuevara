@@ -12,6 +12,7 @@ namespace Web.Auxiliar
         public string Type { get; set; } = string.Empty;
         public int DifficultyLevel { get; set; }
         public int Visibility { get; set; }   
+        public int Servings { get; set; }   
         public int UserIDR { get; set; }     
         public int UserRID { get; set; }     
 

@@ -102,6 +102,7 @@ namespace Web.Controllers
                     Type = request.Type,
                     DifficultyLevel = request.DifficultyLevel,
                     Visibility = request.Visibility,
+                    Servings = request.Servings,
                     UserIdR = request.UserRID,
                     ImageUrl = imageUrl
                 };
