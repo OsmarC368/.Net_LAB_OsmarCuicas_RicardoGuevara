@@ -29,6 +29,9 @@ namespace Infrastructure.Data.Configuration
             builder.Property(x => x.imageURL)
                 .IsRequired(false);
 
+            builder.Property(x => x.videoURL)
+                .IsRequired(false);
+
             builder.Property(x => x.Duration)
                 .IsRequired();
 

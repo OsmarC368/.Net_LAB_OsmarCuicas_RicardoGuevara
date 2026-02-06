@@ -15,11 +15,11 @@ namespace Web.Auxiliar
     {
     public string? Id { get; set; }
     public string? Title { get; set; }
-    public string? Url { get; set; }           // ← URL directa full size (usa esta)
+    public string? Url { get; set; }           
     public string? DisplayUrl { get; set; }
-    public string? DeleteUrl { get; set; }     // para borrar si necesitas
-    public Thumb? Thumb { get; set; }          // thumbnail si lo quieres
-    // ... más campos si necesitas
+    public string? DeleteUrl { get; set; }     
+    public Thumb? Thumb { get; set; }          
+
     }
 
 public class Thumb
